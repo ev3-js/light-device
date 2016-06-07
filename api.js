@@ -20,7 +20,9 @@ exports.sensor_unsubscribe = sensorUnsubscribe
 
 function sensorSubscribe (data, cb) {
   var port = data.port
+  console.log('subscribe', port)
   touchSensors[port].on('change', function (value) {
+    console.log('change')
     messages.emit(data.socketId, value)
     lightToggle({port: port})
   })
