@@ -14,11 +14,11 @@ robot.on('ready', function () {
 
 var messages = exports.messages = new Emitter()
 
-exports.light_toggle = light_toggle
-exports.sensor_subscribe = sensor_subscribe
-exports.sensor_unsubscribe = sensor_unsubscribe
+exports.light_toggle = lightToggle
+exports.sensor_subscribe = sensorSubscribe
+exports.sensor_unsubscribe = sensorUnsubscribe
 
-function sensor_subscribe (data, cb) {
+function sensorSubscribe (data, cb) {
   var port = data.port
   touchSensors[port].on('change', function (value) {
     messages.emit(data.socketId, value)
@@ -27,7 +27,7 @@ function sensor_subscribe (data, cb) {
   cb(null)
 }
 
-function sensor_unsubscribe (data, cb) {
+function sensorUnsubscribe (data, cb) {
   var port = data.port
   touchSensors[port].off('change')
   cb(null)
