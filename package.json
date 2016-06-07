@@ -18,7 +18,7 @@
   "homepage": "https://github.com/ev3-js/light-device#readme",
   "dependencies": {
     "component-emitter": "^1.2.1",
-    "rtm-server": "^0.1.5",
+    "rtm-server": "^0.1.8",
     "brickpi-raspberry-watch": "0.1.0",
     "wiring-pi": "2.1.1"
   }
