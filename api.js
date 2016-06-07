@@ -2,6 +2,7 @@ var Emitter = require('component-emitter')
 var wpi = require('wiring-pi')
 var brickpi = require('brickpi-raspberry-watch')
 
+wpi.setup('wpi')
 var robot = new brickpi.BrickPi({pollingInterval: 100})
 var touchSensors = [1, 2, 3, 4].map(function (num) {
   return new brickpi.Sensor({ port: brickpi.PORTS['S' + num], type: brickpi.SENSOR_TYPE.NXT.TOUCH })
