@@ -19,7 +19,7 @@
   "dependencies": {
     "component-emitter": "^1.2.1",
     "rtm-server": "^0.1.5",
-    "brickpi-raspberry": "https://github.com/ev3-js/brickpi-nodejs.git",
+    "brickpi-raspberry-watch": "0.1.0",
     "wiring-pi": "2.1.1"
   }
 }
