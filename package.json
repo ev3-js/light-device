@@ -1,0 +1,25 @@
+{
+  "name": "light-device",
+  "version": "0.1.0",
+  "description": "Add a light device for ev3 games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ev3-js/light-device.git"
+  },
+  "author": "danleavitt0",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ev3-js/light-device/issues"
+  },
+  "homepage": "https://github.com/ev3-js/light-device#readme",
+  "dependencies": {
+    "component-emitter": "^1.2.1",
+    "rtm-server": "^0.1.5",
+    "brickpi-raspberry": "https://github.com/ev3-js/brickpi-nodejs.git",
+    "wiring-pi": "2.1.1"
+  }
+}
