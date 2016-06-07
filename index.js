@@ -4,9 +4,9 @@ var firebase = require('firebase')
 var watching = []
 
 firebase.initializeApp({
-  serviceAccount: './firebase-service-account.json'
-  apiKey: "AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY",
-  databaseURL: "https://play-ev3.firebaseio.com",
+  serviceAccount: './firebase-service-account.json',
+  apiKey: 'AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY',
+  databaseURL: 'https://play-ev3.firebaseio.com'
 })
 
 wpi.setup('wpi')
