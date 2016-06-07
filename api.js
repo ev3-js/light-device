@@ -4,7 +4,7 @@ var brickpi = require('brickpi-raspberry')
 
 var robot = new brickpi.BrickPi({pollingInterval: 100})
 var touchSensors = [1, 2, 3, 4].map(function (num) {
-  return { port: brickpi.PORTS[`S${num}`], type: brickpi.SENSOR_TYPE.NXT.TOUCH }
+  return { port: brickpi.PORTS['S' + num], type: brickpi.SENSOR_TYPE.NXT.TOUCH }
 })
 touchSensors.forEach(function (sensor) { robot.addSensor(sensor) })
 robot.setup()
