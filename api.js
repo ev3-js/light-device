@@ -11,7 +11,8 @@ robot.run()
 var messages = exports.messages = new Emitter()
 
 exports.light_toggle = light_toggle
-exports.sensor_toggle = sensor_toggle
+exports.sensor_subscribe = sensor_subscribe
+exports.sensor_unsubscribe = sensor_unsubscribe
 
 function sensor_subscribe (data, cb) {
   var port = data.port
@@ -19,6 +20,12 @@ function sensor_subscribe (data, cb) {
     messages.emit(data.socketId, value)
     lightToggle({port: port})
   })
+  cb(null)
+}
+
+function sensor_unsubscribe (data, cb) {
+  var port = data.port
+  touchSensors[port].off('change')
   cb(null)
 }
 
