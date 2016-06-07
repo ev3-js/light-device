@@ -8,7 +8,9 @@ var touchSensors = [1, 2, 3, 4].map(function (num) {
 })
 touchSensors.forEach(function (sensor) { robot.addSensor(sensor) })
 robot.setup()
-robot.run()
+robot.on('ready', function () {
+  robot.run()
+})
 
 var messages = exports.messages = new Emitter()
 
