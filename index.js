@@ -12,6 +12,7 @@ firebase.initializeApp({
 wpi.setup('wpi')
 var robot = new brickpi.BrickPi({pollingInterval: 100})
 var touchSensors = [1, 2, 3, 4].map(function (num) {
+  wpi.digitalWrite(num, wpi.LOW)
   return new brickpi.Sensor({ port: brickpi.PORTS['S' + num], type: brickpi.SENSOR_TYPE.NXT.TOUCH })
 })
 touchSensors.forEach(function (sensor) { robot.addSensor(sensor) })
@@ -39,7 +40,6 @@ function sensorSubscribe (port) {
 }
 
 function lightToggle (port) {
-  cb = cb || function () {}
   wpi.pinMode(port, wpi.OUTPUT)
   wpi.digitalRead(port) ? wpi.digitalWrite(port, wpi.LOW) : wpi.digitalWrite(port, wpi.HIGH)
 }
