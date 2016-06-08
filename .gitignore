@@ -32,5 +32,6 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-config.js
-firebase-service-account.json
+# Remove the comments for production
+# config.js
+# firebase-service-account.json
