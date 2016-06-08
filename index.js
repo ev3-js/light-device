@@ -20,10 +20,11 @@ robot.on('ready', function () {
   robot.run()
 })
 
-firebase.database().ref('devices/light').on('value', function (snap) {
+firebase.database().ref('devices/active').on('value', function (snap) {
   var devices = snap.val()
   devices.forEach(function (port) {
     if (watching.indexOf(port) === -1) {
+      lightToggle(port)
       sensorSubscribe(port)
     }
   })
@@ -31,16 +32,14 @@ firebase.database().ref('devices/light').on('value', function (snap) {
 
 function sensorSubscribe (port) {
   touchSensors[port-1].once('change', function (value) {
-    lightToggle({port: port})
+    lightToggle(port)
     watching.splice(watching.indexOf(port), 1)
   })
   watching.push(port)
 }
 
-function lightToggle (data, cb) {
+function lightToggle (port) {
   cb = cb || function () {}
-  var port = data.port
   wpi.pinMode(port, wpi.OUTPUT)
   wpi.digitalRead(port) ? wpi.digitalWrite(port, wpi.LOW) : wpi.digitalWrite(port, wpi.HIGH)
-  cb(null)
 }
