@@ -24,7 +24,7 @@ robot.on('ready', function () {
 })
 
 firebase.database().ref('devices/' + deviceName + '/active').on('value', function (snap) {
-  var devices = snap.val()
+  var devices = snap.val() || []
   devices.forEach(function (port) {
     if (watching.indexOf(port) === -1) {
       lightToggle(port)
@@ -37,7 +37,7 @@ function sensorSubscribe (port) {
   touchSensors[port-1].once('change', function (value) {
     lightToggle(port)
     watching.splice(watching.indexOf(port), 1)
-    firebase.database().ref('devices/' + deviceName + '/presses/' + port + '/presses').transaction(function (curVal) {
+    firebase.database().ref('devices/' + deviceName + '/presses/' + port).transaction(function (curVal) {
       return curVal + 1
     })
   })
