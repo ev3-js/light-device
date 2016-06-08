@@ -20,7 +20,7 @@ robot.on('ready', function () {
   robot.run()
 })
 
-firebase.database().ref('devices').on('value', function (snap) {
+firebase.database().ref('devices/light').on('value', function (snap) {
   var devices = snap.val()
   devices.forEach(function (port) {
     if (watching.indexOf(port) === -1) {
