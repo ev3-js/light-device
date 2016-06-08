@@ -1,11 +1,12 @@
 var wpi = require('wiring-pi')
 var brickpi = require('brickpi-raspberry-watch')
 var firebase = require('firebase')
+var apiKey = require('./config').apiKey
 var watching = []
 
 firebase.initializeApp({
   serviceAccount: './firebase-service-account.json',
-  apiKey: 'AIzaSyA1Ib5i5HZPCxnKp4ITiUoy5VEKaLMdsDY',
+  apiKey: apiKey,
   databaseURL: 'https://play-ev3.firebaseio.com'
 })
 
@@ -21,7 +22,7 @@ robot.on('ready', function () {
   robot.run()
 })
 
-firebase.database().ref('devices/active').on('value', function (snap) {
+firebase.database().ref('devices/light1/active').on('value', function (snap) {
   var devices = snap.val()
   devices.forEach(function (port) {
     if (watching.indexOf(port) === -1) {
@@ -35,6 +36,9 @@ function sensorSubscribe (port) {
   touchSensors[port-1].once('change', function (value) {
     lightToggle(port)
     watching.splice(watching.indexOf(port), 1)
+    firebase.database().ref('devices/light1/presses/' + port).transaction(function (curVal) {
+      return curVal + 1
+    })
   })
   watching.push(port)
 }
